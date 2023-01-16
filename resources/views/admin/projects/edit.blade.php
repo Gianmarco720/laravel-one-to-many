@@ -16,8 +16,8 @@
         <small id="titleHelper" class="text-muted">Add a title for your new project, max 100 characters, must be unique</small>
     </div>
 
-    <div class="mb-3 d-flex gap-4">
-        <img width="130" src="{{asset('storage/' . $project->cover_image)}}" alt="">
+    <div class="mb-3">
+        <img class="pb-3" width="130" src="{{asset('storage/' . $project->cover_image)}}" alt="">
         <label for="cover_image" class="form-label">Replace cover image</label>
         <input type="file" name="cover_image" id="cover_image" class="form-control @error('cover_image') is-invalid @enderror" placeholder="" aria-describedby="coverImageHelper">
         <small id="coverImageHelper" class="text-muted">Replace the cover image of your project</small>
@@ -30,8 +30,8 @@
 
             @forelse ($types as $type)
             <!-- Check if the project has a type assigned or not -->
-            <option value="{{$category->id}}" {{ $category->id == old('category_id',  $post->category ? $post->category->id : '') ? 'selected' : '' }}>
-                {{$category->name}}
+            <option value="{{$type->id}}" {{ $type->id == old('type_id',  $project->type ? $project->type->id : '') ? 'selected' : '' }}>
+                {{$type->name}}
             </option>
             @empty
             <option value="">Sorry, no types in the system.</option>

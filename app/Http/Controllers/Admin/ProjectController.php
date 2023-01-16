@@ -51,10 +51,10 @@ class ProjectController extends Controller
         $val_data = $request->validated();
 
         // save the input cover_image
-        $cover_image = Storage::put('uploads', $val_data['cover_image']);
+        //$cover_image = Storage::put('uploads', $val_data['cover_image']);
 
         // replace the value of cover_image inside $val_data
-        $val_data['cover_image'] = $cover_image;
+        //$val_data['cover_image'] = $cover_image;
 
         // check if the request has a cover_image field
         if ($request->hasFile('cover_image')) {
@@ -128,7 +128,7 @@ class ProjectController extends Controller
         $project->update($val_data);
 
         // redirect to index page
-        return to_route('admin.projects.index')->with('message', 'Project id: $project->id Updated Successfully');
+        return to_route('admin.projects.index')->with('message', "Project id: $project->id Updated Successfully");
     }
 
     /**
