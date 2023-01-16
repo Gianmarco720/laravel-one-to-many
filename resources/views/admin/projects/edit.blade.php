@@ -24,6 +24,23 @@
     </div>
 
     <div class="mb-3">
+        <label for="" class="form-label">Change the type of project</label>
+        <select class="form-select @error('type_id') 'is-invalid' @enderror" name="type_id" id="type_id">
+            <option value="">No project type</option>
+
+            @forelse ($types as $type)
+            <!-- Check if the project has a type assigned or not -->
+            <option value="{{$category->id}}" {{ $category->id == old('category_id',  $post->category ? $post->category->id : '') ? 'selected' : '' }}>
+                {{$category->name}}
+            </option>
+            @empty
+            <option value="">Sorry, no types in the system.</option>
+            @endforelse
+
+        </select>
+    </div>
+
+    <div class="mb-3">
         <label for="body" class="form-label">Description</label>
         <textarea class="form-control @error('body') is-invalid @enderror" name="body" id="body" rows="5" value="{{old($project->body)}}"></textarea>
     </div>
