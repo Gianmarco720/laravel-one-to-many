@@ -26,7 +26,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.types.create');
     }
 
     /**
@@ -37,7 +37,18 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the data
+        $val_data = $request->validated();
+
+        // Generate the type's slug
+        $type_slug = Type::generateSlug($val_data['name']);
+        $val_data['slug'] = $type_slug;
+
+        // Create type
+        $type = Type::create($val_data);
+
+        // Redirect
+        return to_route('admin.types.index')->with('message', "Type id: $type->id Added Successfully");
     }
 
     /**
