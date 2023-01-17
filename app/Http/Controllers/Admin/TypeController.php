@@ -15,7 +15,8 @@ class TypeController extends Controller
      */
     public function index()
     {
-        //
+        $types = Type::orderByDesc('id')->get();
+        return view('admin.types.index', compact('types'));
     }
 
     /**
@@ -47,7 +48,8 @@ class TypeController extends Controller
      */
     public function show(Type $type)
     {
-        //
+        $types = Type::all();
+        return view('admin.types.show', compact('type'));
     }
 
     /**
@@ -81,6 +83,7 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        //
+        $type->delete();
+        return to_route('admin.types.index')->with('message', 'Type Deleted Successfully');
     }
 }
